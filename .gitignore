@@ -7,3 +7,5 @@
 !/LICENSE
 !/README.md
 !/docs/assets
+!assets/
+!assets/*.css
