@@ -1,5 +1,11 @@
+# Ignore everything
 *
+
+# Allow specific files and folders
 !.gitignore
 !/docs
 !/LICENSE
 !/README.md
+!docs/assets/*.png
+!docs/assets/*.svg
+!/docs/assets
