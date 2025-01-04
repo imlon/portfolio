@@ -6,7 +6,7 @@
     <title>Lon Ganancial Portfolio</title>
     <link rel="icon" type="./image/png" href="./assets/ico.png" />
     <link rel="icon" type="./image/svg+xml" href="./assets/ico.svg" />
-    <link rel="stylesheet" crossorigin href="./assets/main-BjhRyMaJ.css">
+    <link rel="stylesheet" crossorigin href="./assets/main-BWD_hyIv.css">
   </head>
   <body class="bg-gray-300">
     <!-- START COPY -->
@@ -78,12 +78,14 @@
 
     <!-- Resizable iFrame Container -->
     <div class="flex justify-center h-screen mt-2">
-      <iframe
-        id="preview-frame"
-        class="border-none"
-        src="./preview.html"
-        style="width: 640px; height: 500px"
-      ></iframe>
+      <!-- Wrapper to prevent flex resizing the iframe -->
+      <div>
+        <iframe
+          id="preview-frame"
+          class="border-none w-[640px] h-[500px]"
+          src="./preview.html"
+        ></iframe>
+      </div>
     </div>
 
     <!-- DIMENSION CONTROL SCRIPT -->
