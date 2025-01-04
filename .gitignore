@@ -5,6 +5,8 @@
 !.gitignore
 !/LICENSE
 !/README.md
-!/docs/
+!/docs/*.html
 !/docs/assets/
 !/docs/assets/*.css
+!/docs/assets/*.svg
+!/docs/assets/*.png
