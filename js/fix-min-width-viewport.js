@@ -26,3 +26,4 @@
     window.addEventListener("resize", adjustViewport);
   })();
   
+  console.log("Fix min-width viewport script loaded");
