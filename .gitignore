@@ -3,9 +3,8 @@
 
 # Allow specific files and folders
 !.gitignore
-!/docs
 !/LICENSE
 !/README.md
-!/docs/assets
-!assets/
-!assets/*.css
+!/docs/
+!/docs/assets/
+!/docs/assets/*.css
