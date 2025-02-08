@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Style Guide CV</title>
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <!-- <link href="./css/input.css" rel="stylesheet" /> -->
+
+    <!-- LOAD GOOGLE FONT DYNAMICALLY SCRIPT -->
+    <script id="load-google-font-script">
+      (function () {
+        // Font configuration
+        const googleFontsConfig = {
+          primary: "Arimo", //PRIMARY GOOGLE FONT
+          secondary: "Open Sans", //SECONDARY GOOGLE FONT
+          //third: "Open Sans", //JUST INCASE WE NEED THIRD GOOGLE FONT
+        };
+
+        // Prepare <link> for Google Fonts
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = `https://fonts.googleapis.com/css2?${Object.values(
+          googleFontsConfig
+        )
+          .map((font) => `family=${font.replace(/\s+/g, "+")}:wght@400;700`)
+          .join("&")}&display=swap`;
+        document.head.appendChild(link);
+
+        // Create dynamic CSS classes for Tailwind-like usage
+        const style = document.createElement("style");
+        style.textContent = Object.entries(googleFontsConfig)
+          .map(
+            ([key, font]) => `
+                .font-${key} {
+                  font-family: '${font}', sans-serif;
+                }
+              `
+          )
+          .join("\n");
+        document.head.appendChild(style);
+
+        console.log("Google Fonts loaded:", googleFontsConfig);
+      })();
+    </script>
+  </head>
+  <body>
+    <div
+      class="max-w-screen-lg mx-auto w-11/12 min-w-80 bg-white shadow-lg rounded-lg"
+    >
+      <!-- TYPOGRAPHY SECTION -->
+      <section class="w-11/12 mx-auto overflow-hidden pb-6">
+        <header
+          class="text-responsive-4xl font-bold font-primary uppercase border-b text-center"
+        >
+          Typography
+        </header>
+        <h1 id="h1" class="text-responsive-3xl font-bold font-primary">
+          <span class="text-nowrap text-gray-950"
+            >h1: Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+          >
+        </h1>
+        <h2
+          id="h2"
+          class="text-responsive-2xl font-semibold font-secondary text-gray-800"
+        >
+          <span class="text-nowrap"
+            >h2: Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+          >
+        </h2>
+        <h3 id="h3" class="text-responsive-xl font-secondary text-gray-700">
+          <span class="text-nowrap"
+            >h3: Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+          >
+        </h3>
+
+        <p id="p" class="text-responsive-md text-gray-500">
+          <span class="text-nowrap"
+            >p: Lorem ipsum dolor sit amet consectetur adipisicing elit.</span
+          >
+        </p>
+        <small id="small" class="text-responsive-sm text-gray-400"
+          ><span class="text-nowrap"
+            >small: Lorem ipsum dolor sit amet consectetur adipisicing
+            elit.</span
+          ></small
+        >
+      </section>
+    </div>
+  </body>
+</html>

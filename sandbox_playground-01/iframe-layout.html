@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Lon Ganancial Portfolio</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="./image/png" href="images/ico.png" />
+    <link rel="icon" type="./image/svg+xml" href="images/ico.svg" />
+
+    <!-- <link href="./css/input.css" rel="stylesheet" /> -->
+  </head>
+
+  <body class="bg-gray-300 font-sans h-screen w-full mx-auto min-w-80">
+    <!-- START COPY! -->
+
+    <!-- Nav Container -->
+    <div class="bg-gray-200 w-full min-w-80 px-4 overflow-x-auto">
+      <!-- Flex container with no wrapping to keep items in a single row -->
+      <div class="flex flex-nowrap items-center justify-between gap-4 py-3">
+        <!-- Preset Buttons (Left Section) -->
+        <div class="grid grid-cols-3 gap-2 items-center shrink-0">
+          <button
+            id="preset-desktop"
+            class="flex items-center justify-center bg-gray-300 rounded hover:bg-gray-400 aspect-square w-[3rem] max-w-[4rem]"
+          >
+            <img
+              src="images/display-desktop.svg"
+              alt="Desktop"
+              class="w-2/3 h-2/3"
+            />
+          </button>
+          <button
+            id="preset-tablet"
+            class="flex items-center justify-center bg-gray-300 rounded hover:bg-gray-400 aspect-square w-[3rem] max-w-[4rem]"
+          >
+            <img
+              src="images/display-tablet.svg"
+              alt="Tablet"
+              class="w-2/3 h-2/3"
+            />
+          </button>
+          <button
+            id="preset-mobile"
+            class="flex items-center justify-center bg-gray-300 rounded hover:bg-gray-400 aspect-square w-[3rem] max-w-[4rem]"
+          >
+            <img
+              src="images/display-mobile.svg"
+              alt="Mobile"
+              class="w-2/3 h-2/3"
+            />
+          </button>
+        </div>
+
+        <!-- Dimension Inputs (Right Section) -->
+        <div class="grid grid-cols-3 gap-2 items-center shrink-0">
+          <!-- Width Input -->
+          <div class="flex flex-col items-center">
+            <label for="width-input" class="text-gray-700 text-responsive-xs">
+              Width (px):
+            </label>
+            <input
+              id="width-input"
+              type="number"
+              class="border border-gray-400 rounded px-2 py-1 w-full max-w-[5rem] text-center text-responsive-sm"
+              placeholder="1024"
+              value="640"
+            />
+          </div>
+
+          <!-- Height Input -->
+          <div class="flex flex-col items-center">
+            <label for="height-input" class="text-gray-700 text-responsive-xs">
+              Height (px):
+            </label>
+            <input
+              id="height-input"
+              type="number"
+              class="border border-gray-400 rounded px-2 py-1 w-full max-w-[5rem] text-center text-responsive-sm"
+              placeholder="768"
+              value="500"
+            />
+          </div>
+
+          <!-- Apply Button -->
+          <div class="flex justify-center">
+            <button
+              id="apply-dimensions"
+              class="bg-purple-600 text-white px-4 py-1 w-full max-w-[6rem] rounded hover:bg-purple-700 text-responsive-sm"
+            >
+              Apply!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Iframe Container -->
+    <!-- Adjust classes below if you want more or less vertical space. -->
+    <div class="min-w-80 mx-auto mt-4">
+      <div class="flex justify-center h-screen">
+        <div>
+          <iframe
+            id="preview-frame"
+            class="border-none w-[640px] h-[500px]"
+            src="./preview.html"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIMENSION CONTROL SCRIPT -->
+    <script>
+      const iframe = document.getElementById("preview-frame");
+      const widthInput = document.getElementById("width-input");
+      const heightInput = document.getElementById("height-input");
+      const applyButton = document.getElementById("apply-dimensions");
+
+      // Preset Buttons
+      const presets = {
+        desktop: { width: 1024, height: 768 },
+        tablet: { width: 768, height: 1024 },
+        mobile: { width: 375, height: 667 },
+      };
+
+      // Load dimensions from localStorage
+      function loadDimensions() {
+        const savedWidth = localStorage.getItem("iframeWidth") || 640; // default 640px
+        const savedHeight = localStorage.getItem("iframeHeight") || 500; // default 500px
+        applyDimensions(savedWidth, savedHeight, false);
+      }
+
+      // Save dimensions to localStorage
+      function saveDimensions(width, height) {
+        localStorage.setItem("iframeWidth", width);
+        localStorage.setItem("iframeHeight", height);
+      }
+
+      // Apply dimensions to the iframe and optionally save them
+      function applyDimensions(width, height, save = true) {
+        widthInput.value = width;
+        heightInput.value = height;
+        iframe.style.width = `${width}px`;
+        iframe.style.height = `${height}px`;
+        if (save) saveDimensions(width, height);
+        console.log(
+          `Applied dimensions: Width = ${width}px, Height = ${height}px`
+        );
+      }
+
+      // Apply dimensions on Enter key or Apply button click
+      [applyButton, widthInput, heightInput].forEach((element) => {
+        element.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            applyDimensions(widthInput.value, heightInput.value);
+          }
+        });
+      });
+      applyButton.addEventListener("click", () => {
+        applyDimensions(widthInput.value, heightInput.value);
+      });
+
+      // Preset button clicks
+      Object.keys(presets).forEach((preset) => {
+        const button = document.getElementById(`preset-${preset}`);
+        button.addEventListener("click", () => {
+          applyDimensions(presets[preset].width, presets[preset].height);
+        });
+      });
+
+      // Load dimensions on page load
+      loadDimensions();
+    </script>
+
+    <!-- END COPY -->
+  </body>
+</html>
